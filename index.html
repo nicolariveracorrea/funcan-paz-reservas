@@ -183,6 +183,20 @@
             text-transform: uppercase;
         }
 
+        .foundation-cover {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            max-height: 168px;
+            margin: 18px auto 0;
+            border: 1px solid rgba(194, 234, 255, 0.38);
+            border-radius: 12px;
+            box-shadow: 0 14px 28px rgba(0, 17, 44, 0.34);
+            object-fit: cover;
+            object-position: center;
+        }
+
         .login-form {
             position: relative;
             z-index: 1;
@@ -900,6 +914,11 @@
                 letter-spacing: 0.8px;
             }
 
+            .foundation-cover {
+                max-height: 128px;
+                margin-top: 14px;
+            }
+
             .input-login,
             .form-reserva input {
                 min-height: 52px;
@@ -1048,6 +1067,7 @@
         <h1 id="loginGreeting">Bienvenido de nuevo</h1>
         <p>Ingresa a tu cuenta de Fundación Funcan Paz</p>
         <p class="foundation-motto">Fundación Construyendo Caminos para la Paz y la Esperanza</p>
+        <img class="foundation-cover" src="assets/funcan-paz-portada.jpg" alt="Fundación Funcan Paz, Parque Horizontes" />
         <form id="loginForm" class="login-form">
             <div class="login-field">
                 <label for="loginUser">Usuario</label>

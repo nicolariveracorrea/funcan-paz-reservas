@@ -1,9 +1,8 @@
-const CACHE_NAME = 'funcan-paz-v12';
+const CACHE_NAME = 'funcan-paz-v13';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './assets/funcan-paz-collage.jpg?v=2',
   './assets/icons/cancha-elite-180.png',
   './assets/icons/cancha-elite-192.png',
   './assets/icons/cancha-elite-512.png'

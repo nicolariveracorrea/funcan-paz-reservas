@@ -187,14 +187,14 @@
             position: relative;
             z-index: 1;
             display: block;
-            width: 100%;
-            max-height: 168px;
+            width: min(100%, 280px);
+            aspect-ratio: 4 / 5;
             margin: 18px auto 0;
             border: 1px solid rgba(194, 234, 255, 0.38);
             border-radius: 12px;
             box-shadow: 0 14px 28px rgba(0, 17, 44, 0.34);
             object-fit: cover;
-            object-position: center;
+            object-position: center 46%;
         }
 
         .login-form {
@@ -1067,7 +1067,7 @@
         <h1 id="loginGreeting">Bienvenido de nuevo</h1>
         <p>Ingresa a tu cuenta de Fundación Funcan Paz</p>
         <p class="foundation-motto">Fundación Construyendo Caminos para la Paz y la Esperanza</p>
-        <img class="foundation-cover" src="assets/funcan-paz-portada.jpg" alt="Fundación Funcan Paz, Parque Horizontes" />
+                <img class="foundation-cover" src="assets/funcan-paz-collage.jpg?v=2" alt="Imágenes del Parque Horizontes de Fundación Funcan Paz" />
         <form id="loginForm" class="login-form">
             <div class="login-field">
                 <label for="loginUser">Usuario</label>

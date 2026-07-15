@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ Fundación Funcan Paz - Reservas</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#146cc7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Funcan Paz">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icons/cancha-elite-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icons/cancha-elite-180.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            background: radial-gradient(circle at 15% 20%, rgba(29, 187, 80, 0.20) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 15%, rgba(12, 83, 34, 0.18) 0%, transparent 16%),
+                        radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.04) 0%, transparent 30%),
+                        #050706;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            color: #e8eef7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(29, 187, 80, 0.12) 0%, transparent 24%),
+                              radial-gradient(circle at 70% 25%, rgba(12, 83, 34, 0.12) 0%, transparent 18%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        ::selection {
+            background: rgba(29, 191, 80, 0.24);
+            color: white;
+        }
+
+        /* Identidad Fundación Funcan Paz */
+        body {
+            background: radial-gradient(circle at 15% 20%, rgba(36, 143, 233, 0.30) 0%, transparent 24%),
+                        radial-gradient(circle at 82% 12%, rgba(88, 185, 246, 0.22) 0%, transparent 20%),
+                        linear-gradient(145deg, #0d396b, #176ebc 50%, #78c4f2);
+        }
+
+        body::before {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .login-container,
+        .card,
+        .header {
+            background: rgba(9, 43, 79, 0.90);
+            border-color: rgba(171, 225, 255, 0.24);
+        }
+
+        .login-container .logo,
+        .btn-login,
+        .btn-primary {
+            background: linear-gradient(135deg, #1d98ea, #145db3);
+        }
+
+        .input-login:focus,
+        .form-reserva input:focus {
+            border-color: #62c8ff;
+            box-shadow: 0 0 0 3px rgba(98, 200, 255, 0.20);
+        }
+
+        .card-title i,
+        .header .brand i,
+        .header .brand span,
+        .toast i {
+            color: #73d3ff;
+        }
+
+        /* ===== LOGIN ===== */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(145deg, rgba(21, 34, 25, 0.94), rgba(7, 13, 10, 0.97));
+            backdrop-filter: blur(28px);
+            border: 1px solid rgba(173, 255, 196, 0.20);
+            border-radius: 28px;
+            padding: 46px 42px 34px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 32px 90px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+            display: none;
+            animation: fadeIn 0.7s ease;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at 12% 0%, rgba(102, 225, 126, 0.24), transparent 32%),
+                        radial-gradient(circle at 86% 100%, rgba(29, 187, 80, 0.22), transparent 36%);
+            pointer-events: none;
+            opacity: 0.72;
+        }
+
+        .login-container.active {
+            display: block;
+        }
+
+        .login-container .logo {
+            position: relative;
+            z-index: 1;
+            margin: 0 auto 18px;
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #3ac65f, #087a2e);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 16px 30px rgba(19, 154, 60, 0.25);
+            border: 1px solid rgba(220, 255, 228, 0.24);
+        }
+
+        .login-container .logo i {
+            font-size: 27px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
+        }
+
+        .login-container h1 {
+            position: relative;
+            z-index: 1;
+            color: #f5f9ff;
+            font-size: 27px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0;
+            text-transform: none;
+            line-height: 1.2;
+            text-shadow: none;
+        }
+
+        .login-container p {
+            position: relative;
+            z-index: 1;
+            color: #a0b1cc;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 7px;
+            letter-spacing: 0;
+        }
+
+        .foundation-motto {
+            color: #c7ebff !important;
+            font-size: 11px !important;
+            font-weight: 700;
+            line-height: 1.45;
+            margin: 12px auto 0 !important;
+            max-width: 320px;
+            text-transform: uppercase;
+        }
+
+        .login-form {
+            position: relative;
+            z-index: 1;
+            margin-top: 30px;
+        }
+
+        .login-field {
+            display: block;
+            margin-top: 18px;
+        }
+
+        .login-field:first-child {
+            margin-top: 0;
+        }
+
+        .login-field label {
+            display: block;
+            color: #e6efe8;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .login-input-wrap {
+            position: relative;
+        }
+
+        .login-input-wrap > i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #9ba79f;
+            font-size: 15px;
+            pointer-events: none;
+        }
+
+        .input-login {
+            width: 100%;
+            min-height: 48px;
+            padding: 13px 45px 13px 43px;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(221, 239, 225, 0.24);
+            border-radius: 9px;
+            color: #eef3ff;
+            font-size: 14px;
+            transition: 0.3s ease;
+            outline: none;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .input-login:focus {
+            border-color: #1dbf50;
+            box-shadow: 0 0 0 3px rgba(29, 191, 80, 0.18);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .input-login::placeholder {
+            color: #9ba79f;
+        }
+
+        .btn-login {
+            width: 100%;
+            min-height: 50px;
+            padding: 13px 18px;
+            border: 1px solid rgba(220, 255, 228, 0.32);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #35c55b, #168d3b);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            margin-top: 26px;
+            letter-spacing: 0;
+            box-shadow: 0 14px 30px rgba(29, 187, 80, 0.24);
+            overflow: hidden;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 45px rgba(29, 191, 80, 0.36);
+            background: linear-gradient(135deg, #2cc55a, #0f8a35);
+        }
+
+        .btn-password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #b9c5bd;
+            cursor: pointer;
+        }
+
+        .btn-password-toggle:hover {
+            color: #ffffff;
+        }
+
+        .login-help {
+            display: block;
+            width: fit-content;
+            margin: 13px 0 0 auto;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #c5d4c8;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .login-help:hover {
+            color: #65da86;
+        }
+
+        .login-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 13px;
+        }
+
+        .login-actions .login-help {
+            margin: 0;
+        }
+
+        .login-footer {
+            color: #9eaaa2 !important;
+            font-size: 12px !important;
+            margin-top: 24px !important;
+        }
+
+        .login-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* ===== APP PRINCIPAL ===== */
+        .app-container {
+            max-width: 1200px;
+            width: 100%;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .app-container.active {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 30px;
+            background: rgba(10, 16, 12, 0.92);
+            backdrop-filter: blur(28px);
+            border-radius: 32px;
+            border: 1px solid rgba(29, 191, 80, 0.16);
+            margin-bottom: 30px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.20);
+        }
+
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header .brand i {
+            font-size: 32px;
+            color: #1dbf50;
+        }
+
+        .header .brand h2 {
+            color: #eef3ff;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: 0.6px;
+        }
+
+        .header .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .header .welcome-user {
+            color: #e6f6ff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .header .brand-motto {
+            color: #b9e6ff;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 285px;
+            text-transform: uppercase;
+        }
+
+        .header .brand span {
+            color: #1dbf50;
+            text-shadow: 0 0 18px rgba(29, 191, 80, 0.20);
+        }
+
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header .user-info .role-badge {
+            background: rgba(29, 191, 80, 0.10);
+            color: #d2ffe0;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(29, 191, 80, 0.28);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 10px rgba(29, 191, 80, 0.10);
+        }
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(29, 191, 80, 0.22);
+            color: #d5e0ff;
+            padding: 12px 22px;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-logout:hover {
+            background: rgba(29, 191, 80, 0.14);
+            color: #ffffff;
+            border-color: #1dbf50;
+            transform: translateY(-1px);
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(8, 14, 18, 0.96);
+            backdrop-filter: blur(26px);
+            border: 1px solid rgba(29, 191, 80, 0.12);
+            border-radius: 34px;
+            padding: 34px;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: 0 28px 65px rgba(0, 0, 0, 0.18);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(180deg, rgba(29, 191, 80, 0.05), transparent 70%);
+            pointer-events: none;
+            opacity: 0.18;
+        }
+
+        .card:hover {
+            border-color: rgba(29, 191, 80, 0.24);
+            transform: translateY(-4px);
+            box-shadow: 0 32px 90px rgba(0, 0, 0, 0.22);
+        }
+
+        .card-title {
+            color: #edf4ff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 0 12px rgba(29, 191, 80, 0.12);
+        }
+
+        .card-title i {
+            color: #1dbf50;
+        }
+
+        /* Sellos */
+        .sellos-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            border: 1px solid rgba(29, 191, 80, 0.12);
+        }
+
+        .sello-item {
+            aspect-ratio: 1;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #a8b2c6;
+            transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(14px);
+            animation: popIn 0.45s ease forwards;
+            animation-delay: calc(0.03s * var(--i, 1));
+        }
+
+        .sello-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(29, 191, 80, 0.24);
+            box-shadow: 0 0 20px rgba(29, 191, 80, 0.10);
+        }
+
+        .sello-item.activo {
+            background: linear-gradient(135deg, rgba(29, 191, 80, 0.20), rgba(12, 83, 34, 0.18));
+            border-color: rgba(29, 191, 80, 0.45);
+            color: #d4f4ff;
+            box-shadow: 0 0 35px rgba(29, 191, 80, 0.22);
+            transform: scale(1.04);
+            animation: pulseGlow 2.4s ease-in-out infinite;
+        }
+
+        .sello-item.activo i {
+            color: #f7c948;
+            text-shadow: 0 0 20px #f7c94855;
+        }
+
+        .sello-item .numero {
+            position: absolute;
+            font-size: 11px;
+            color: #7f9884;
+            bottom: 4px;
+            right: 8px;
+        }
+
+        .sello-item.activo .numero {
+            color: rgba(29, 191, 80, 0.55);
+        }
+
+        .progreso-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            margin: 20px 0 10px 0;
+            overflow: hidden;
+        }
+
+        .progreso-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #29bb50, #086f2a);
+            border-radius: 999px;
+            transition: width 0.6s ease;
+            width: 0%;
+            box-shadow: 0 0 24px rgba(29, 191, 80, 0.18);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            color: #8892a0;
+            font-size: 14px;
+        }
+
+        .stats strong {
+            color: white;
+        }
+
+        /* Form */
+        .form-reserva {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-reserva input {
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            color: #eef3ff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .form-reserva input:focus {
+            border-color: #1dbf50;
+            box-shadow: 0 0 28px rgba(29, 191, 80, 0.18);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-reserva input::placeholder {
+            color: #7b8a95;
+        }
+
+        .btn-primary {
+            position: relative;
+            z-index: 1;
+            padding: 16px;
+            border: 1px solid rgba(29, 191, 80, 0.22);
+            border-radius: 20px;
+            background: linear-gradient(135deg, #29bb50, #086f2a);
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            box-shadow: 0 14px 35px rgba(29, 191, 80, 0.18);
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 18px 50px rgba(29, 191, 80, 0.30);
+            border-color: rgba(255, 255, 255, 0.30);
+            background: linear-gradient(135deg, #2cc55a, #0f8a35);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.08);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 12px 30px rgba(29, 191, 80, 0.18);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Admin panel */
+        .admin-panel {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .admin-panel.visible {
+            display: block;
+        }
+
+        .admin-only {
+            display: none;
+        }
+
+        .app-container.is-admin .admin-only {
+            display: block;
+        }
+
+        .admin-panel table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #c8d0dc;
+            font-size: 14px;
+            background: transparent;
+        }
+
+        .admin-panel th {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            color: #9db3d4;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .admin-panel td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .admin-panel .badge-status {
+            background: rgba(29, 191, 80, 0.12);
+            color: #1dbf50;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .btn-confirmar {
+            border: 1px solid rgba(115, 211, 255, 0.40);
+            border-radius: 10px;
+            background: rgba(45, 157, 225, 0.18);
+            color: #ccefff;
+            padding: 8px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-confirmar:hover {
+            background: rgba(45, 157, 225, 0.32);
+        }
+
+        .btn-danger {
+            background: rgba(255, 107, 107, 0.12);
+            color: #ff9da0;
+            border: 1px solid rgba(255, 107, 107, 0.20);
+            padding: 10px 18px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.08);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 107, 107, 0.24);
+            border-color: rgba(255, 107, 107, 0.35);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(255, 107, 107, 0.12);
+        }
+
+        /* Notificación de éxito */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(7, 12, 22, 0.96);
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(29, 191, 80, 0.28);
+            padding: 20px 30px;
+            border-radius: 22px;
+            color: white;
+            font-weight: 600;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.45s ease, opacity 0.45s ease;
+            pointer-events: none;
+            z-index: 999;
+            max-width: 400px;
+            box-shadow: 0 25px 60px rgba(29, 191, 80, 0.12);
+        }
+
+        .reward-card {
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(29, 191, 80, 0.10), rgba(12, 83, 34, 0.10));
+            border: 1px solid rgba(29, 191, 80, 0.22);
+            border-radius: 24px;
+            padding: 22px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 18px 45px rgba(29, 191, 80, 0.10);
+            backdrop-filter: blur(18px);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .reward-card.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reward-card span {
+            color: #dbe9ff;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .toast i {
+            color: #1dbf50;
+            margin-right: 12px;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1.04);
+                box-shadow: 0 0 35px rgba(29, 191, 80, 0.22);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 48px rgba(29, 191, 80, 0.28);
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+        }
+
+        /* Responsive: tabletas y celulares */
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding: 18px;
+            }
+
+            .header {
+                padding: 20px 22px;
+                margin-bottom: 20px;
+            }
+
+            .card {
+                padding: 26px;
+                border-radius: 28px;
+            }
+
+            .toast {
+                right: 18px;
+                bottom: 18px;
+                max-width: calc(100vw - 36px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .login-container {
+                padding: 34px 22px;
+                border-radius: 32px;
+            }
+
+            .login-container .logo {
+                width: 86px;
+                height: 86px;
+                margin-bottom: 26px;
+            }
+
+            .login-container .logo i {
+                font-size: 34px;
+            }
+
+            .login-container h1 {
+                font-size: 28px;
+                letter-spacing: 0.8px;
+            }
+
+            .input-login,
+            .form-reserva input {
+                min-height: 52px;
+                font-size: 16px;
+            }
+
+            .btn-login,
+            .btn-primary {
+                min-height: 54px;
+                font-size: 16px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+                padding: 18px;
+                border-radius: 24px;
+            }
+
+            .header .brand {
+                justify-content: center;
+            }
+
+            .header .user-info {
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .header .user-info .role-badge,
+            .btn-logout {
+                padding: 10px 14px;
+            }
+
+            .grid-2 {
+                gap: 16px;
+            }
+
+            .card {
+                min-width: 0;
+                padding: 22px 18px;
+                border-radius: 24px;
+            }
+
+            .card-title {
+                font-size: 18px;
+            }
+
+            .sellos-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 7px;
+                padding: 9px;
+                border-radius: 18px;
+            }
+
+            .sello-item {
+                border-radius: 13px;
+                font-size: 21px;
+            }
+
+            .sello-item .numero {
+                font-size: 9px;
+                right: 5px;
+            }
+
+            .stats {
+                gap: 8px;
+                font-size: 13px;
+            }
+
+            .admin-panel {
+                margin-top: 20px;
+            }
+
+            #historialContainer {
+                margin: 0 -4px;
+                padding: 0 4px;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+            }
+
+            .admin-panel table {
+                min-width: 460px;
+            }
+
+            .reward-card {
+                padding: 18px 14px;
+            }
+
+            .toast {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                max-width: none;
+                padding: 16px 18px;
+                border-radius: 18px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .header .brand h2 {
+                font-size: 20px;
+            }
+
+            .header .brand-motto {
+                font-size: 9px;
+                max-width: 230px;
+            }
+
+            .header .user-info .role-badge,
+            .btn-logout {
+                font-size: 12px;
+                padding: 9px 11px;
+            }
+
+            .card {
+                padding: 20px 14px;
+            }
+
+            .sellos-grid {
+                gap: 5px;
+                padding: 7px;
+            }
+
+            .sello-item {
+                font-size: 18px;
+                border-radius: 11px;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== LOGIN ========== -->
+    <div class="login-container active" id="loginContainer">
+        <div class="logo">
+            <i class="fas fa-futbol"></i>
+        </div>
+        <h1 id="loginGreeting">Bienvenido de nuevo</h1>
+        <p>Ingresa a tu cuenta de Fundación Funcan Paz</p>
+        <p class="foundation-motto">Fundación Construyendo Caminos para la Paz y la Esperanza</p>
+        <form id="loginForm" class="login-form">
+            <div class="login-field">
+                <label for="loginUser">Usuario</label>
+                <div class="login-input-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="input-login" id="loginUser" placeholder="Ingresa tu usuario" autocomplete="username" />
+                </div>
+            </div>
+            <div class="login-field">
+                <label for="loginPass">Contraseña</label>
+                <div class="login-input-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="input-login" id="loginPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" />
+                    <button class="btn-password-toggle" type="button" id="togglePassword" aria-label="Mostrar contraseña" title="Mostrar contraseña">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="login-actions">
+                <button class="login-help" type="button" id="createAccount">Crear cuenta</button>
+                <button class="login-help" type="button" id="loginHelp">¿Olvidaste tu contraseña?</button>
+            </div>
+            <button type="submit" class="btn-login">Ingresar</button>
+            <div class="login-error" id="loginError">Usuario o contraseña incorrectos</div>
+        </form>
+        <p class="login-footer"><i class="fas fa-info-circle"></i> Fundación Funcan Paz</p>
+    </div>
+
+    <!-- ========== APP PRINCIPAL ========== -->
+    <div class="app-container" id="appContainer">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="brand">
+                <i class="fas fa-futbol"></i>
+                <div class="brand-copy">
+                    <h2>Fundación <span>Funcan Paz</span></h2>
+                    <span class="brand-motto">Construyendo Caminos para la Paz y la Esperanza</span>
+                    <span class="welcome-user" id="appGreeting"></span>
+                </div>
+            </div>
+            <div class="user-info">
+                <span class="role-badge" id="roleBadge"><i class="fas fa-crown"></i> Admin</span>
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid-2">
+
+            <!-- ====== COLUMNA IZQUIERDA: RESERVAS ====== -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-calendar-plus"></i> Nueva Reserva
+                </div>
+                <form class="form-reserva" id="reservaForm">
+                    <input type="text" id="usuarioReserva" placeholder="👤 Usuario" autocomplete="username" minlength="3" required />
+                    <input type="tel" id="telefonoCliente" placeholder="📱 Celular" autocomplete="tel" inputmode="numeric" pattern="[0-9]{7,15}" maxlength="15" title="Escribe solo números, entre 7 y 15 dígitos" required />
+                    <input type="text" id="horaReserva" placeholder="⏰ Hora (HH:MM)" inputmode="numeric" pattern="([01][0-9]|2[0-3]):[0-5][0-9]" maxlength="5" title="Escribe cuatro números; por ejemplo, 2000 para 20:00" required />
+                    <button type="submit" class="btn-primary" id="btnReservar">
+                        <i class="fas fa-plus-circle"></i> Reservar (+1 sello)
+                    </button>
+                </form>
+
+                <!-- Historial de reservas (solo admin) -->
+                <div class="admin-panel visible" id="adminPanel">
+                    <hr style="border-color: rgba(255,255,255,0.06); margin: 25px 0 20px 0;" />
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span style="color: white; font-weight: 700;"><i class="fas fa-list"></i> Historial</span>
+                        <button class="btn-danger" onclick="reiniciarSistema()">
+                            <i class="fas fa-trash"></i> Reiniciar
+                        </button>
+                    </div>
+                    <div style="max-height: 250px; overflow-y: auto;" id="historialContainer">
+                        <table>
+                            <thead>
+                                <tr><th>#</th><th>Usuario</th><th>Hora</th><th>Estado</th></tr>
+                            </thead>
+                            <tbody id="tablaHistorial"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== COLUMNA DERECHA: SELLOS ====== -->
+            <div class="card admin-only" id="loyaltyCard">
+                <div class="card-title">
+                    <i class="fas fa-star"></i> <span id="loyaltyTitle">Tarjeta de Fidelidad</span>
+                </div>
+
+                <div class="sellos-grid" id="sellosContainer"></div>
+
+                <div class="progreso-bar">
+                    <div class="fill" id="progresoFill"></div>
+                </div>
+                <div class="stats">
+                    <span><strong id="sellosCount">0</strong> de 10 sellos</span>
+                    <span>🏆 <strong id="reservasTotal">0</strong> reservas</span>
+                </div>
+
+                <!-- Mensaje cuando llega a 10 -->
+                <div id="mensaje10" class="reward-card">
+                    <i class="fas fa-trophy" style="color: #f7c948; font-size: 32px; display: block; margin-bottom: 8px;"></i>
+                    <span style="color: white; font-weight: 700; font-size: 18px;">🎉 ¡Felicidades!</span>
+                    <p style="color: #d3dbdf; font-size: 14px; margin-top: 5px;">
+                        Has completado 10 sellos.<br>
+                        <strong style="color: #1dbf50;">🌟 1 hora GRATIS en la cancha 🌟</strong>
+                    </p>
+                    <span style="color: #8fa29b; font-size: 12px;">
+                        <i class="fas fa-check-circle" style="color: #1dbf50;"></i> Notificación enviada al administrador
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i> <span id="toastMessage">Acción completada</span>
+    </div>
+
+    <script>
+        // =============================================================
+        //  CONFIGURACIÓN
+        // =============================================================
+        const CONFIG = {
+            CELULAR_JEFE: '573001234567', // Cambiar por el número real
+            MENSAJE_SMS: '🎯 ¡ALERTA! Un usuario completó 10 sellos en Fundación Funcan Paz. Tiene derecho a 1 hora gratis. Revisa el sistema.',
+            ADMINISTRADORES: [
+                { usuario: 'alex', passwordHash: 'd9508122cd143d69df229bf3624b7bcb2b8ac81ed210a0c926455ef119c12abd', nombre: 'Alex' },
+                { usuario: 'nicolas', passwordHash: 'c7aa08b6bc990517ac46dc4e20f34a1e913ee9bb11ca42ba519a44e411066272', nombre: 'Nicolas' }
+            ]
+        };
+
+        // =============================================================
+        //  ESTADO
+        // =============================================================
+        const STORAGE_KEY = 'cancha_elite_data';
+        const USERS_STORAGE_KEY = 'cancha_elite_users';
+        const LAST_USER_STORAGE_KEY = 'funcan_paz_last_user';
+        const LOGIN_SECURITY_KEY = 'funcan_paz_login_security';
+        const MAX_LOGIN_ATTEMPTS = 5;
+        const LOCKOUT_DURATION_MS = 15 * 60 * 1000;
+        const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+        let sessionTimeout;
+
+        let estado = {
+            sellos: 0,
+            reservasTotales: 0,
+            historial: [], // { nombre, telefono, hora, fecha }
+            ultimaNotificacion: false,
+            usuario: null,
+            usuarioActual: null,
+            usuarioFidelidad: null
+        };
+
+        // =============================================================
+        //  FUNCIONES DE PERSISTENCIA
+        // =============================================================
+        function cargarDatos() {
+            const guardado = localStorage.getItem(STORAGE_KEY);
+            if (guardado) {
+                try {
+                    const parsed = JSON.parse(guardado);
+                    estado.sellos = parsed.sellos || 0;
+                    estado.reservasTotales = parsed.reservasTotales || 0;
+                    estado.historial = parsed.historial || [];
+                    estado.ultimaNotificacion = parsed.ultimaNotificacion || false;
+                } catch (e) {
+                    console.warn('Error al cargar datos');
+                }
+            }
+            if (estado.sellos > 10) estado.sellos = 10;
+        }
+
+        function guardarDatos() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+        }
+
+        function obtenerCuentasCliente() {
+            try {
+                return JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        async function generarHash(texto) {
+            const bytes = new TextEncoder().encode(texto);
+            const digest = await crypto.subtle.digest('SHA-256', bytes);
+            return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+        }
+
+        function obtenerSeguridadLogin() {
+            try {
+                return JSON.parse(localStorage.getItem(LOGIN_SECURITY_KEY)) || { intentos: 0, bloqueadoHasta: 0 };
+            } catch (error) {
+                return { intentos: 0, bloqueadoHasta: 0 };
+            }
+        }
+
+        function registrarFalloLogin() {
+            const seguridad = obtenerSeguridadLogin();
+            seguridad.intentos += 1;
+            if (seguridad.intentos >= MAX_LOGIN_ATTEMPTS) {
+                seguridad.intentos = 0;
+                seguridad.bloqueadoHasta = Date.now() + LOCKOUT_DURATION_MS;
+            }
+            localStorage.setItem(LOGIN_SECURITY_KEY, JSON.stringify(seguridad));
+            return seguridad;
+        }
+
+        function reiniciarSeguridadLogin() {
+            localStorage.removeItem(LOGIN_SECURITY_KEY);
+        }
+
+        function renovarSesion() {
+            if (!estado.usuario) return;
+            clearTimeout(sessionTimeout);
+            sessionTimeout = setTimeout(() => {
+                logout();
+                mostrarToast('🔒 Tu sesión se cerró por inactividad.');
+            }, SESSION_TIMEOUT_MS);
+        }
+
+        function actualizarSaludos(nombreUsuario = localStorage.getItem(LAST_USER_STORAGE_KEY)) {
+            const saludoLogin = document.getElementById('loginGreeting');
+            const saludoApp = document.getElementById('appGreeting');
+
+            if (nombreUsuario) {
+                saludoLogin.textContent = `Bienvenido, ${nombreUsuario}`;
+                saludoApp.textContent = `Bienvenido, ${nombreUsuario}`;
+            } else {
+                saludoLogin.textContent = 'Bienvenido de nuevo';
+                saludoApp.textContent = '';
+            }
+        }
+
+        function aplicarRol(rol, nombreUsuario) {
+            const isAdmin = rol === 'admin';
+            const appContainer = document.getElementById('appContainer');
+            const reservarButton = document.getElementById('btnReservar');
+
+            estado.usuario = rol;
+            estado.usuarioActual = nombreUsuario;
+            if (!isAdmin) estado.usuarioFidelidad = nombreUsuario;
+            actualizarSaludos(nombreUsuario);
+            appContainer.classList.toggle('is-admin', isAdmin);
+            document.getElementById('roleBadge').innerHTML = isAdmin
+                ? '<i class="fas fa-crown"></i> Admin'
+                : `<i class="fas fa-user"></i> ${nombreUsuario}`;
+            document.getElementById('adminPanel').classList.toggle('visible', isAdmin);
+            reservarButton.innerHTML = isAdmin
+                ? '<i class="fas fa-plus-circle"></i> Reservar (+1 sello)'
+                : '<i class="fas fa-calendar-check"></i> Solicitar reserva';
+            const usuarioReserva = document.getElementById('usuarioReserva');
+            usuarioReserva.value = isAdmin ? '' : nombreUsuario;
+            usuarioReserva.readOnly = !isAdmin;
+        }
+
+        // =============================================================
+        //  RENDERIZAR INTERFAZ
+        // =============================================================
+        function renderizarSellos() {
+            const cuentaFidelidad = obtenerCuentasCliente().find((cuenta) => cuenta.usuario === estado.usuarioFidelidad);
+            const sellosUsuario = cuentaFidelidad?.sellos || 0;
+            const reservasUsuario = estado.historial.filter((reserva) => reserva.usuario === estado.usuarioFidelidad && reserva.asistio).length;
+            const container = document.getElementById('sellosContainer');
+            container.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const div = document.createElement('div');
+                div.className = 'sello-item';
+                if (i <= sellosUsuario) {
+                    div.classList.add('activo');
+                    div.innerHTML = `<i class="fas fa-star"></i><span class="numero">${i}</span>`;
+                } else {
+                    div.innerHTML = `<span style="font-size:18px;">${i}</span>`;
+                }
+                container.appendChild(div);
+            }
+
+            // Progreso
+            const pct = (sellosUsuario / 10) * 100;
+            document.getElementById('progresoFill').style.width = pct + '%';
+            document.getElementById('sellosCount').textContent = sellosUsuario;
+            document.getElementById('reservasTotal').textContent = reservasUsuario;
+            document.getElementById('loyaltyTitle').textContent = estado.usuarioFidelidad
+                ? `Fidelidad: ${estado.usuarioFidelidad}`
+                : 'Tarjeta de Fidelidad';
+
+            // Mensaje de 10
+            const msg = document.getElementById('mensaje10');
+            if (sellosUsuario >= 10) {
+                msg.classList.add('show');
+                if (!estado.ultimaNotificacion) {
+                    enviarNotificacionJefe();
+                    estado.ultimaNotificacion = true;
+                    guardarDatos();
+                }
+            } else {
+                msg.classList.remove('show');
+                if (estado.ultimaNotificacion) {
+                    estado.ultimaNotificacion = false;
+                    guardarDatos();
+                }
+            }
+
+            // Botón reserva
+            const btn = document.getElementById('btnReservar');
+            btn.disabled = false;
+            if (estado.usuario === 'admin' && sellosUsuario >= 10) {
+                btn.innerHTML = '<i class="fas fa-gift"></i> ¡Cancha gratis obtenida!';
+            } else {
+                btn.innerHTML = '<i class="fas fa-plus-circle"></i> Reservar (+1 sello)';
+            }
+
+            // Renderizar historial (solo admin)
+            renderizarHistorial();
+        }
+
+        function renderizarHistorial() {
+            const tbody = document.getElementById('tablaHistorial');
+            tbody.innerHTML = '';
+            if (estado.historial.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#8fa29b; padding:20px;">Sin reservas aún</td></tr>';
+                return;
+            }
+            // Mostrar últimos 10
+            const ultimos = estado.historial.slice(-10).reverse();
+            ultimos.forEach((reserva, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${estado.historial.length - index}</td>
+                    <td>${reserva.usuario || 'Sin usuario'}</td>
+                    <td>${reserva.hora || '—'}</td>
+                    <td>${reserva.asistio
+                        ? '<span class="badge-status"><i class="fas fa-check"></i> Asistió</span>'
+                        : `<button class="btn-confirmar" data-reserva-id="${reserva.id}"><i class="fas fa-user-check"></i> Confirmar asistencia</button>`}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // =============================================================
+        //  NOTIFICACIÓN AL JEFE (SMS + WhatsApp + Clipboard)
+        // =============================================================
+        function enviarNotificacionJefe() {
+            const numero = CONFIG.CELULAR_JEFE;
+            const mensaje = CONFIG.MENSAJE_SMS;
+
+            // 1. SMS
+            window.open(`sms:${numero}?body=${encodeURIComponent(mensaje)}`, '_blank');
+
+            // 2. WhatsApp
+            setTimeout(() => {
+                window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            }, 300);
+
+            // 3. Copiar al portapapeles
+            const textoCompleto = `📲 NOTIFICACIÓN FUNDACIÓN FUNCAN PAZ\n\n${mensaje}\n\n📱 Teléfono jefe: ${numero}`;
+            navigator.clipboard.writeText(textoCompleto).then(() => {
+                mostrarToast('📋 Mensaje copiado al portapapeles. Envíalo al jefe.');
+            }).catch(() => {
+                alert('📲 Copia este mensaje y envíalo al jefe:\n\n' + textoCompleto);
+            });
+
+            console.log('📨 NOTIFICACIÓN ENVIADA:', mensaje);
+        }
+
+        // =============================================================
+        //  TOAST (notificaciones en pantalla)
+        // =============================================================
+        function mostrarToast(mensaje) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = mensaje;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // =============================================================
+        //  RESERVAR
+        // =============================================================
+        function reservarTurno(e) {
+            e.preventDefault();
+            const usuario = document.getElementById('usuarioReserva').value.trim();
+            const telefono = document.getElementById('telefonoCliente').value.trim();
+            const hora = document.getElementById('horaReserva').value;
+
+            if (!/^[A-Za-z0-9._-]{3,30}$/.test(usuario)) {
+                mostrarToast('⚠️ Escribe un usuario válido');
+                return;
+            }
+
+            if (!obtenerCuentasCliente().some((cuenta) => cuenta.usuario === usuario)) {
+                mostrarToast('⚠️ El usuario debe crear su cuenta antes de reservar');
+                return;
+            }
+
+            if (!/^\d{7,15}$/.test(telefono)) {
+                mostrarToast('⚠️ El celular debe tener solo números');
+                return;
+            }
+
+            if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(hora)) {
+                mostrarToast('⚠️ Selecciona una hora válida');
+                return;
+            }
+
+            // Guardar en historial
+            estado.historial.push({
+                id: Date.now(),
+                usuario: usuario,
+                telefono: telefono,
+                hora: hora,
+                fecha: new Date().toLocaleString(),
+                asistio: false
+            });
+
+            guardarDatos();
+            if (estado.usuario === 'admin') renderizarHistorial();
+
+            // Limpiar campos
+            if (estado.usuario === 'admin') document.getElementById('usuarioReserva').value = '';
+            document.getElementById('telefonoCliente').value = '';
+            document.getElementById('horaReserva').value = '';
+
+            mostrarToast('✅ Solicitud de reserva registrada. El sello se suma al confirmar asistencia.');
+        }
+
+        function confirmarAsistencia(reservaId) {
+            if (estado.usuario !== 'admin') return;
+            const reserva = estado.historial.find((item) => item.id === reservaId);
+            if (!reserva || reserva.asistio) return;
+
+            const cuentas = obtenerCuentasCliente();
+            const cuentaUsuario = cuentas.find((cuenta) => cuenta.usuario === reserva.usuario);
+            if (!cuentaUsuario) {
+                mostrarToast('⚠️ No se encontró la cuenta de este usuario');
+                return;
+            }
+
+            reserva.asistio = true;
+            cuentaUsuario.sellos = Math.min((cuentaUsuario.sellos || 0) + 1, 10);
+            estado.usuarioFidelidad = reserva.usuario;
+            localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(cuentas));
+            guardarDatos();
+            renderizarSellos();
+            mostrarToast(`✅ Asistencia de ${reserva.usuario} confirmada. Se sumó un sello.`);
+        }
+
+        // =============================================================
+        //  REINICIAR (solo admin)
+        // =============================================================
+        function reiniciarSistema() {
+            if (!confirm('⚠️ ¿Seguro que quieres reiniciar TODOS los sellos y reservas?')) return;
+            estado.sellos = 0;
+            estado.reservasTotales = 0;
+            estado.historial = [];
+            estado.ultimaNotificacion = false;
+            guardarDatos();
+            renderizarSellos();
+            mostrarToast('🔄 Sistema reiniciado correctamente');
+        }
+
+        // =============================================================
+        //  LOGIN / LOGOUT
+        // =============================================================
+        async function login(e) {
+            e.preventDefault();
+            const user = document.getElementById('loginUser').value.trim();
+            const pass = document.getElementById('loginPass').value.trim();
+            const loginError = document.getElementById('loginError');
+            const seguridad = obtenerSeguridadLogin();
+
+            if (seguridad.bloqueadoHasta > Date.now()) {
+                const minutos = Math.ceil((seguridad.bloqueadoHasta - Date.now()) / 60000);
+                loginError.textContent = `Demasiados intentos. Intenta de nuevo en ${minutos} minuto(s).`;
+                loginError.style.display = 'block';
+                return;
+            }
+
+            const passHash = await generarHash(pass);
+
+            const administrador = CONFIG.ADMINISTRADORES.find((cuenta) => cuenta.usuario === user && cuenta.passwordHash === passHash);
+            const cuentasCliente = obtenerCuentasCliente();
+            const cuentaCliente = cuentasCliente.find((cuenta) => cuenta.usuario === user && (cuenta.passwordHash === passHash || cuenta.contrasena === pass));
+
+            if (administrador) {
+                reiniciarSeguridadLogin();
+                localStorage.setItem(LAST_USER_STORAGE_KEY, administrador.nombre);
+                document.getElementById('loginContainer').classList.remove('active');
+                document.getElementById('appContainer').classList.add('active');
+                aplicarRol('admin', administrador.nombre);
+                document.getElementById('loginError').style.display = 'none';
+                cargarDatos();
+                renderizarSellos();
+                renovarSesion();
+                mostrarToast(`👋 Bienvenido, ${administrador.nombre}`);
+            } else if (cuentaCliente) {
+                if (!cuentaCliente.passwordHash) {
+                    cuentaCliente.passwordHash = passHash;
+                    delete cuentaCliente.contrasena;
+                    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(cuentasCliente));
+                }
+                reiniciarSeguridadLogin();
+                localStorage.setItem(LAST_USER_STORAGE_KEY, user);
+                document.getElementById('loginContainer').classList.remove('active');
+                document.getElementById('appContainer').classList.add('active');
+                aplicarRol('cliente', user);
+                document.getElementById('loginError').style.display = 'none';
+                renovarSesion();
+                mostrarToast(`👋 Bienvenido, ${user}`);
+            } else {
+                const fallo = registrarFalloLogin();
+                loginError.textContent = fallo.bloqueadoHasta > Date.now()
+                    ? 'Demasiados intentos. El acceso fue bloqueado temporalmente.'
+                    : 'Usuario o contraseña incorrectos';
+                loginError.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            clearTimeout(sessionTimeout);
+            estado.usuario = null;
+            estado.usuarioActual = null;
+            document.getElementById('appContainer').classList.remove('active');
+            document.getElementById('loginContainer').classList.add('active');
+            document.getElementById('loginForm').reset();
+            document.getElementById('loginError').style.display = 'none';
+            actualizarSaludos();
+        }
+
+        // =============================================================
+        //  INICIALIZACIÓN
+        // =============================================================
+        cargarDatos();
+        actualizarSaludos();
+
+        document.getElementById('loginForm').addEventListener('submit', login);
+        document.getElementById('reservaForm').addEventListener('submit', reservarTurno);
+        document.getElementById('usuarioReserva').addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/[^A-Za-z0-9._-]/g, '').slice(0, 30);
+        });
+        document.getElementById('telefonoCliente').addEventListener('input', (event) => {
+            event.target.value = event.target.value.replace(/\D/g, '').slice(0, 15);
+        });
+        document.getElementById('horaReserva').addEventListener('input', (event) => {
+            const digits = event.target.value.replace(/\D/g, '').slice(0, 4);
+            event.target.value = digits.length > 2 ? `${digits.slice(0, 2)}:${digits.slice(2)}` : digits;
+        });
+        document.getElementById('togglePassword').addEventListener('click', () => {
+            const passwordInput = document.getElementById('loginPass');
+            const toggleButton = document.getElementById('togglePassword');
+            const isPasswordVisible = passwordInput.type === 'text';
+
+            passwordInput.type = isPasswordVisible ? 'password' : 'text';
+            toggleButton.innerHTML = `<i class="fas fa-eye${isPasswordVisible ? '' : '-slash'}"></i>`;
+            toggleButton.setAttribute('aria-label', isPasswordVisible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+            toggleButton.setAttribute('title', isPasswordVisible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+        });
+        document.getElementById('loginHelp').addEventListener('click', () => {
+            mostrarToast('Contacta a un administrador para recuperar tu acceso.');
+        });
+        document.getElementById('createAccount').addEventListener('click', async () => {
+            const user = document.getElementById('loginUser').value.trim();
+            const pass = document.getElementById('loginPass').value.trim();
+            const loginError = document.getElementById('loginError');
+
+            const usuarioReservado = CONFIG.ADMINISTRADORES.some((cuenta) => cuenta.usuario === user);
+            if (user.length < 3 || pass.length < 4 || usuarioReservado) {
+                loginError.textContent = 'Usa un usuario de 3 caracteres y una contraseña de 4; Alex y Nicolas están reservados.';
+                loginError.style.display = 'block';
+                return;
+            }
+
+            const cuentas = obtenerCuentasCliente();
+            if (cuentas.some((cuenta) => cuenta.usuario === user)) {
+                loginError.textContent = 'Ese usuario ya existe.';
+                loginError.style.display = 'block';
+                return;
+            }
+
+            cuentas.push({ usuario: user, passwordHash: await generarHash(pass), sellos: 0 });
+            localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(cuentas));
+            document.getElementById('loginForm').requestSubmit();
+        });
+        document.getElementById('tablaHistorial').addEventListener('click', (event) => {
+            const button = event.target.closest('.btn-confirmar');
+            if (button) confirmarAsistencia(Number(button.dataset.reservaId));
+        });
+        ['click', 'keydown', 'mousemove', 'touchstart'].forEach((eventName) => {
+            document.addEventListener(eventName, renovarSesion, { passive: true });
+        });
+
+        // Si ya hay sesión activa (por si recarga), mostrar app
+        if (estado.usuario === 'admin') {
+            document.getElementById('loginContainer').classList.remove('active');
+            document.getElementById('appContainer').classList.add('active');
+            aplicarRol('admin', 'Administrador');
+            renderizarSellos();
+        } else {
+            // Mostrar login
+            document.getElementById('loginContainer').classList.add('active');
+            document.getElementById('appContainer').classList.remove('active');
+        }
+
+        console.log('⚽ Sistema Fundación Funcan Paz cargado');
+        console.log('🔑 Credenciales: admin / admin123');
+        console.log('💡 Función global: reiniciarSistema()');
+        window.reiniciarSistema = reiniciarSistema;
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch((error) => {
+                    console.warn('No se pudo registrar el modo sin conexión.', error);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

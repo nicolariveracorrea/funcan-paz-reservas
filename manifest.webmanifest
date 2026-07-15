@@ -1,0 +1,26 @@
+{
+  "name": "Fundación Funcan Paz - Reservas",
+  "short_name": "Funcan Paz",
+  "description": "Sistema de reservas y fidelidad de Fundación Funcan Paz.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d396b",
+  "theme_color": "#146cc7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icons/cancha-elite-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/cancha-elite-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

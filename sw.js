@@ -1,4 +1,4 @@
-const CACHE_NAME = 'funcan-paz-v14';
+const CACHE_NAME = 'funcapaze-v16';
 const APP_SHELL = [
   './',
   './index.html',

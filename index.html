@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ Fundación Funcan Paz - Reservas</title>
+    <title>⚽ FUNCAPAZE - Reservas</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="theme-color" content="#146cc7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Funcan Paz">
+    <meta name="apple-mobile-web-app-title" content="FUNCAPAZE">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" href="assets/icons/cancha-elite-192.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/icons/cancha-elite-180.png">
@@ -59,7 +59,7 @@
             color: white;
         }
 
-        /* Identidad Fundación Funcan Paz */
+        /* Identidad FUNCAPAZE */
         body {
             background: radial-gradient(circle at 14% 16%, rgba(16, 150, 168, 0.34) 0%, transparent 24%),
                         radial-gradient(circle at 86% 84%, rgba(41, 139, 75, 0.25) 0%, transparent 22%),
@@ -1051,7 +1051,7 @@
             <i class="fas fa-futbol"></i>
         </div>
         <h1 id="loginGreeting">Bienvenido de nuevo</h1>
-        <p>Ingresa a tu cuenta de Fundación Funcan Paz</p>
+        <p>Ingresa a tu cuenta de FUNCAPAZE</p>
         <p class="foundation-motto">Fundación Construyendo Caminos para la Paz y la Esperanza</p>
         <form id="loginForm" class="login-form">
             <div class="login-field">
@@ -1078,7 +1078,7 @@
             <button type="submit" class="btn-login">Ingresar</button>
             <div class="login-error" id="loginError">Usuario o contraseña incorrectos</div>
         </form>
-        <p class="login-footer"><i class="fas fa-info-circle"></i> Fundación Funcan Paz</p>
+        <p class="login-footer"><i class="fas fa-info-circle"></i> FUNCAPAZE</p>
     </div>
 
     <!-- ========== APP PRINCIPAL ========== -->
@@ -1089,7 +1089,7 @@
             <div class="brand">
                 <i class="fas fa-futbol"></i>
                 <div class="brand-copy">
-                    <h2>Fundación <span>Funcan Paz</span></h2>
+                    <h2><span>FUNCAPAZE</span></h2>
                     <span class="brand-motto">Construyendo Caminos para la Paz y la Esperanza</span>
                     <span class="welcome-user" id="appGreeting"></span>
                 </div>
@@ -1120,7 +1120,8 @@
                 </form>
 
                 <!-- Historial de reservas (solo admin) -->
-                <div class="admin-panel visible" id="adminPanel">
+                <div class="admin-panel" id="adminPanel">
+                    <h3 class="card-title"><i class="fas fa-history"></i> Historial de Asistencia</h3>
                     <hr style="border-color: rgba(255,255,255,0.06); margin: 25px 0 20px 0;" />
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <span style="color: white; font-weight: 700;"><i class="fas fa-list"></i> Historial</span>
@@ -1133,7 +1134,8 @@
                             <thead>
                                 <tr><th>#</th><th>Usuario</th><th>Hora</th><th>Estado</th></tr>
                             </thead>
-                            <tbody id="tablaHistorial"></tbody>
+                            <tbody id="tablaHistorial">
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -1182,10 +1184,10 @@
         // =============================================================
         const CONFIG = {
             CELULAR_JEFE: '573001234567', // Cambiar por el número real
-            MENSAJE_SMS: '🎯 ¡ALERTA! Un usuario completó 10 sellos en Fundación Funcan Paz. Tiene derecho a 1 hora gratis. Revisa el sistema.',
+            MENSAJE_SMS: '🎯 ¡ALERTA! Un usuario completó 10 sellos en FUNCAPAZE. Tiene derecho a 1 hora gratis. Revisa el sistema.',
             ADMINISTRADORES: [
                 { usuario: 'alex', passwordHash: 'd9508122cd143d69df229bf3624b7bcb2b8ac81ed210a0c926455ef119c12abd', nombre: 'Alex' },
-                { usuario: 'nicolas', passwordHash: 'c7aa08b6bc990517ac46dc4e20f34a1e913ee9bb11ca42ba519a44e411066272', nombre: 'Nicolas' }
+                { usuario: 'nicolas', passwordHash: '036f331262cb242453c3b839324325a349135333185ac4aa60b3393540391893', nombre: 'Nicolas' }
             ]
         };
 
@@ -1414,7 +1416,7 @@
             }, 300);
 
             // 3. Copiar al portapapeles
-            const textoCompleto = `📲 NOTIFICACIÓN FUNDACIÓN FUNCAN PAZ\n\n${mensaje}\n\n📱 Teléfono jefe: ${numero}`;
+            const textoCompleto = `📲 NOTIFICACIÓN FUNCAPAZE\n\n${mensaje}\n\n📱 Teléfono jefe: ${numero}`;
             navigator.clipboard.writeText(textoCompleto).then(() => {
                 mostrarToast('📋 Mensaje copiado al portapapeles. Envíalo al jefe.');
             }).catch(() => {
@@ -1524,7 +1526,7 @@
         // =============================================================
         async function login(e) {
             e.preventDefault();
-            const user = document.getElementById('loginUser').value.trim();
+            const user = document.getElementById('loginUser').value.trim().toLowerCase();
             const pass = document.getElementById('loginPass').value.trim();
             const loginError = document.getElementById('loginError');
             const seguridad = obtenerSeguridadLogin();
@@ -1619,7 +1621,7 @@
             mostrarToast('Contacta a un administrador para recuperar tu acceso.');
         });
         document.getElementById('createAccount').addEventListener('click', async () => {
-            const user = document.getElementById('loginUser').value.trim();
+            const user = document.getElementById('loginUser').value.trim().toLowerCase();
             const pass = document.getElementById('loginPass').value.trim();
             const loginError = document.getElementById('loginError');
 
@@ -1661,8 +1663,7 @@
             document.getElementById('appContainer').classList.remove('active');
         }
 
-        console.log('⚽ Sistema Fundación Funcan Paz cargado');
-        console.log('🔑 Credenciales: admin / admin123');
+        console.log('⚽ Sistema FUNCAPAZE cargado');
         console.log('💡 Función global: reiniciarSistema()');
         window.reiniciarSistema = reiniciarSistema;
 
@@ -1674,6 +1675,5 @@
             });
         }
     </script>
-
 </body>
 </html>

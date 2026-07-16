@@ -1,7 +1,7 @@
 {
-  "name": "Fundación Funcan Paz - Reservas",
-  "short_name": "Funcan Paz",
-  "description": "Sistema de reservas y fidelidad de Fundación Funcan Paz.",
+  "name": "FUNCAPAZE - Reservas",
+  "short_name": "FUNCAPAZE",
+  "description": "Sistema de reservas y fidelidad de FUNCAPAZE.",
   "lang": "es",
   "start_url": "./",
   "scope": "./",
